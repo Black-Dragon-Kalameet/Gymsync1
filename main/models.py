@@ -9,8 +9,9 @@ from django.dispatch import receiver
 
 import json
 import asyncio
-from asgiref.sync import async_to_sync, sync_to_async
-from channels.layers import get_channel_layer
+#from asgiref.sync import async_to_sync, sync_to_async
+#from channels.layers import get_channel_layer
+
 
 
 # Website home page banner
@@ -289,14 +290,14 @@ class TrainerNotification(models.Model):
 
     def save(self,  *args, **kwargs):
         super(TrainerNotification, self).save(*args, **kwargs)
-        channel_layer = get_channel_layer()
+       # channel_layer = get_channel_layer()
         notif = self.notif_msg
         total = TrainerNotification.objects.all().count()
-        async_to_sync(channel_layer.group_send) (
-            'noti_group_name', {
-                'type' : 'send_notificatio',
-                'value' : json.dumps({'notif':notif, 'total': total})}
-            )
+        #async_to_sync(channel_layer.group_send) (
+        #    'noti_group_name', {
+         #       'type' : 'send_notification',
+          #      'value' : json.dumps({'notif':notif, 'total': total})}
+           # )
 
 
 
