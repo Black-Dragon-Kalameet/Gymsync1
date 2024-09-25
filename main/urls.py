@@ -33,7 +33,8 @@ urlpatterns = [
     path('trainer_change_password', views.trainer_change_password, name='trainer_change_password'),
     path('trainer_notifs', views.trainer_notifs, name='trainer_notifs'),
     path('mark_read_trainer_notif', views.mark_read_trainer_notif, name='mark_read_trainer_notif'),
-    
+    path('mealplan',views.mealplan,name='mealplan'),
+    path('mealadd',views.mealadd,name='mealadd'),
 
     # Notifications
     path('notifs', views.notifs, name='notifs'),

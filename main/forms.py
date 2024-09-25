@@ -61,3 +61,8 @@ class ReportForTrainerForm(forms.ModelForm):
         model = models.TrainerSubscriberReport
         fields = ('report_for_trainer', 'report_msg', 'report_from_user')
         widgets = {'report_from_user': forms.HiddenInput()}
+
+class mealaddform(forms.ModelForm):
+     class Meta:
+          model = models.mealplan
+          fields = ('subscriber','mealtime','meal')

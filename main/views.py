@@ -411,3 +411,28 @@ def report_for_trainer(request):
 
     form = forms.ReportForTrainerForm
     return render(request, 'report_for_trainer.html', {'form' : form, 'msg': msg})
+
+def mealplan(request):
+
+    trainid =  request.session['trainerid']
+    trainer = models.Trainer.objects.get(id=trainid)
+    mealplan = trainer.mealplans.all()
+
+
+    return render(request,'mealplan.html',{'mealplan':mealplan})
+
+def mealadd(request):
+    msg = None
+    trainid = request.session.get('trainerid')
+
+    if request.method == 'POST':
+        form = forms.mealaddform(request.POST, request.FILES)
+        if form.is_valid():
+            mealplan = form.save(commit=False)
+            mealplan.Trainer_id =trainid
+            mealplan.save()
+            msg = 'Meal added successfully'
+            return redirect('mealplan') 
+    
+    form = forms.mealaddform()  
+    return render(request, 'mealadd.html', {'form': form, 'msg': msg})
