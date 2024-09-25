@@ -39,7 +39,7 @@
             </ul>
 
             
-            {% if request.user.is.authenticated %}
+            {% if request.user.is_authenticated %}
 
             <!-- Check on the subscribed package, and show already purchased under the plan which user has signed up for -->
             {% check_user_package request.user.id plan.id as check_pckg %}

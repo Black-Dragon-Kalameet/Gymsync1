@@ -112,14 +112,14 @@ def checkout_session(request, plan_id):
                 'product_data': {
                 'name': plan.title,
                 },
-                'unit_amount': float(plan.price),
+                'unit_amount': int(float(plan.price) * 100),
             },
             'quantity': 1,
         }],
         mode = 'payment',
         #success_url = reverse('pay_success') + f'?session_id={session.id}'
         #cancel_url = reverse('pay_cancel')
-        success_url = 'http://127.0.0.1:8000/pay_success?session_id={CECKOUT_SESSION_id}',
+        success_url = 'http://127.0.0.1:8000/pay_success?session_id={CHECKOUT_SESSION_id}',
         cancel_url = 'http://127.0.0.1:8000/pay_cancel',
         client_reference_id = plan_id,
     )
